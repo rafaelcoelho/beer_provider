@@ -2,9 +2,11 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
 	id("org.springframework.boot") version "2.7.3"
-	id("io.spring.dependency-management") version "1.0.13.RELEASE"
-	kotlin("jvm") version "1.6.21"
-	kotlin("plugin.spring") version "1.6.21"
+    id("io.spring.dependency-management") version "1.0.13.RELEASE"
+    kotlin("jvm") version "1.6.21"
+    kotlin("plugin.spring") version "1.6.21"
+
+    id("org.springframework.cloud.contract") version "3.1.3"
 }
 
 group = "com.personal.server"
@@ -36,12 +38,16 @@ dependencyManagement {
 }
 
 tasks.withType<KotlinCompile> {
-	kotlinOptions {
-		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "17"
-	}
+    kotlinOptions {
+        freeCompilerArgs = listOf("-Xjsr305=strict")
+        jvmTarget = "17"
+    }
 }
 
 tasks.withType<Test> {
-	useJUnitPlatform()
+    useJUnitPlatform()
+}
+
+contracts {
+    setBaseClassForTests("com.personal.server.beer.BeerOrderManagementBaseTest")
 }
