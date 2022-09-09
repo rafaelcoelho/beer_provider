@@ -24,6 +24,29 @@ import org.springframework.cloud.contract.spec.Contract
     }
     response {
         status 200
+        body("""
+[
+  {
+    "volume": 9,
+    "brand": "patagonia",
+    "many": 10
+  },
+  {
+    "volume": 5,
+    "brand": "zalaz",
+    "many": 11
+  },
+  {
+    "volume": 3,
+    "brand": "b&d",
+    "many": 9
+  },
+  {
+    "volume": 9,
+    "brand": "3#Orelhas",
+    "many": 15
+  }
+]	""")
         headers {
             contentType(applicationJson())
         }
