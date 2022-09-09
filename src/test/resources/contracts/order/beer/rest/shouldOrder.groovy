@@ -2,7 +2,7 @@ package contracts.order.beer.rest
 
 import org.springframework.cloud.contract.spec.Contract
 
-Contract.make {
+[Contract.make {
     description("""
             Represents a successful scenario of list the beer menu
             
@@ -33,4 +33,4 @@ Contract.make {
             })
         }
     }
-}
+}]
