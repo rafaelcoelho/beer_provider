@@ -51,9 +51,8 @@ import org.springframework.cloud.contract.spec.Contract
             contentType(applicationJson())
         }
         bodyMatchers {
-            jsonPath('$', byType {
-                minOccurrence(4)
-            })
+            jsonPath('$.[*]', byType())
+            jsonPath('$', byType { minOccurrence(4) })
         }
     }
 }]
