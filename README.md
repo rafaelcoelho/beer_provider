@@ -1,3 +1,6 @@
+[![CI Pipeline](https://github.com/rafaelcoelho/beer_provider/actions/workflows/ci.yml/badge.svg)](https://github.com/rafaelcoelho/beer_provider/actions/workflows/ci.yml)
+___
+
 # :clown_face: The best beer that never produces side effect upon consumers :clown_face:
 
 A beer provider in charge to serve a lot of beers for amazing and extremely happier clients
