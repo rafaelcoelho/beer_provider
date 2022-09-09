@@ -1,4 +1,4 @@
-[![CI Pipeline](https://github.com/rafaelcoelho/beer_provider/actions/workflows/ci.yml/badge.svg)](https://github.com/rafaelcoelho/beer_provider/actions/workflows/ci.yml)
+[![Continuous Integration Pipeline](https://github.com/rafaelcoelho/beer_provider/actions/workflows/ci.yml/badge.svg?branch=master&event=push)](https://github.com/rafaelcoelho/beer_provider/actions/workflows/ci.yml)
 ___
 
 # :clown_face: The best beer that never produces side effect upon consumers :clown_face:
