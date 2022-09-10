@@ -1,4 +1,4 @@
-package contracts.order.beer.rest
+package contracts.order
 
 import org.springframework.cloud.contract.spec.Contract
 
