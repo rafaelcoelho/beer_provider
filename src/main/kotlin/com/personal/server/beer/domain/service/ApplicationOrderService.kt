@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class ApplicationOrderService {
-    private val beersStock: Map<String, Int> = mapOf(
+    private val beersStock = mutableMapOf(
         "patagonia" to 10,
         "zalaz" to 11,
         "b&d" to 9,
@@ -26,4 +26,7 @@ class ApplicationOrderService {
         return beers
     }
 
+    fun newBeerOnStock(many: Int, brand: String) {
+        beersStock[brand] = many
+    }
 }
