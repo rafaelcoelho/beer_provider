@@ -26,7 +26,11 @@ class BeerSimulation : Simulation() {
                 .body(
                     StringBody(
                         """
-                    
+                    {
+                      "volume": 10,
+                      "qtd": 10,
+                      "brand": "zalaz"
+                    }
                 """.trimIndent()
                     )
                 )
