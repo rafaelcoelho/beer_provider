@@ -54,4 +54,35 @@ class BeerSimulation : Simulation() {
                 )
                 .check(status().`is`(201))
         )
+
+    init {
+        setUp(
+            scn_list_beer.injectOpen(
+                nothingFor(5),
+                atOnceUsers(50),
+                rampUsers(1000).during(60),
+                constantUsersPerSec(100.0).during(30),
+                constantUsersPerSec(100.0).during(30).randomized(),
+                rampUsersPerSec(10.0).to(20.0).during(10),
+                rampUsersPerSec(10.0).to(20.0).during(10).randomized(),
+                stressPeakUsers(1000).during(20)
+            ),
+            scn_order_beer.injectOpen(rampUsers(1000).during(60)),
+            scn_order_beer.injectOpen(
+                incrementUsersPerSec(50.0)
+                    .times(10)
+                    .eachLevelLasting(10)
+                    .separatedByRampsLasting(10)
+                    .startingFrom(50.0) // Double
+            ),
+            scn_new_beer.injectOpen(
+                atOnceUsers(0),
+                incrementUsersPerSec(5.0)
+                    .times(10)
+                    .eachLevelLasting(10)
+                    .separatedByRampsLasting(10)
+                    .startingFrom(50.0) // Double
+            )
+        ).protocols(httpProtocol)
+    }
 }
