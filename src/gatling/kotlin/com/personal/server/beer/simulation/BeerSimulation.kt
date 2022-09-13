@@ -1,9 +1,10 @@
 package com.personal.server.beer.simulation
 
-import io.gatling.javaapi.core.CoreDsl.StringBody
-import io.gatling.javaapi.core.CoreDsl.scenario
+import io.gatling.javaapi.core.CoreDsl.*
 import io.gatling.javaapi.core.Simulation
 import io.gatling.javaapi.http.HttpDsl.http
+import io.gatling.javaapi.http.HttpDsl.status
+import java.util.*
 
 class BeerSimulation : Simulation() {
     val httpProtocol = http
@@ -34,5 +35,23 @@ class BeerSimulation : Simulation() {
                 """.trimIndent()
                     )
                 )
+                .check(status().`is`(200))
+        )
+
+    val scn_new_beer = scenario("NewBeerToMenu")
+        .exec(
+            http("AddBeer")
+                .post("/menu/v1/beer")
+                .body(
+                    StringBody(
+                        """
+                    {
+                      "many": 20,
+                      "brand": "${UUID.randomUUID()}"
+                    }
+                """.trimIndent()
+                    )
+                )
+                .check(status().`is`(201))
         )
 }
