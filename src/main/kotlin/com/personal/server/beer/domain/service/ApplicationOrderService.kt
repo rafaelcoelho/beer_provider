@@ -2,15 +2,18 @@ package com.personal.server.beer.domain.service
 
 import com.personal.server.beer.domain.model.Beer
 import org.springframework.stereotype.Service
+import java.util.concurrent.ConcurrentHashMap
 
 @Service
 class ApplicationOrderService {
-    private val beersStock = mutableMapOf(
-        "patagonia" to 10,
-        "zalaz" to 11,
-        "b&d" to 9,
-        "3#Orelhas" to 15
-    )
+    private val beersStock: ConcurrentHashMap<String, Int> = ConcurrentHashMap()
+
+    init {
+        beersStock["patagonia"] = 10
+        beersStock["zalaz"] = 11
+        beersStock["b&d"] = 9
+        beersStock["3#Orelhas"] = 15
+    }
 
     fun orderBeer(many: Int, volume: Int, brand: String): Beer {
         val availability = beersStock.getOrDefault(brand, 0)
