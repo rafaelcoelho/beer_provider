@@ -2,10 +2,7 @@ package com.personal.server.beer.infra.cfs.web.resources
 
 import com.personal.server.beer.domain.model.Beer
 import com.personal.server.beer.domain.service.ApplicationOrderService
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Positive
@@ -15,7 +12,7 @@ import javax.validation.constraints.Positive
 class BeerController(val appService: ApplicationOrderService) {
 
     @PostMapping("/beer")
-    fun orderABeer(@Valid req: OrderRequest): Beer {
+    fun orderABeer(@RequestBody @Valid req: OrderRequest): Beer {
         return appService.orderBeer(req.qtd, req.volume, req.brand)
     }
 
