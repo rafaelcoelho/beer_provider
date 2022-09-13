@@ -16,6 +16,7 @@ class BeerSimulation : Simulation() {
         .exec(
             http("listMenu")
                 .get("/order/v1/beer")
+                .check(status().`is`(200))
         )
 
     val scn_order_beer = scenario("OrderBeer")
