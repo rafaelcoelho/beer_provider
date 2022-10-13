@@ -9,9 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-java@v2
+      - name: Environment Setup
+        uses: actions/setup-java@v2
         with:
           distribution: 'microsoft'
           java-version: '17'
@@ -43,7 +45,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build container image
-        user: docker/build-push-action@v1.1.0
+        uses: docker/build-push-action@v1.1.0
         with:
           username: ${{ secrets.DOCKER_USER_NAME }}
           password: ${{ secrets.DOCKER_PASSWD }}
@@ -55,9 +57,11 @@ jobs:
     needs: pack_docker_image
     
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - uses: imranismail/setup-kustomize@v1
+      - name: kustomize
+        uses: imranismail/setup-kustomize@v1
         with:
           kustomize_version: v3.6.1
 
@@ -73,4 +77,5 @@ jobs:
           git config --local user.name "Beer Owner"
           git commit -am "Upgrade image tag"
 
-      - uses: ad-m/github-push-action@cd
+      - name: Push
+        uses: ad-m/github-push-action@cd
