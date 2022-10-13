@@ -67,7 +67,6 @@ class BeerSimulation : Simulation() {
                 rampUsersPerSec(10.0).to(20.0).during(10).randomized(),
                 stressPeakUsers(1000).during(20)
             ),
-            scn_order_beer.injectOpen(rampUsers(1000).during(60)),
             scn_order_beer.injectOpen(
                 incrementUsersPerSec(50.0)
                     .times(10)
