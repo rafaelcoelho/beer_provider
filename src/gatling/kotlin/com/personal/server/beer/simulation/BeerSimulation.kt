@@ -8,7 +8,7 @@ import java.util.*
 
 class BeerSimulation : Simulation() {
     val httpProtocol = http
-        .baseUrl("http://localhost:8080")
+        .baseUrl("http://localhost:8081")
         .acceptHeader("*/*")
         .contentTypeHeader("application/json")
         .userAgentHeader("Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0")
