@@ -28,9 +28,8 @@ spec:
           # - Init containers always run to completion.
           # - Each init container must complete successfully before the next one starts.
       containers:
-      - name:  beer_provider
-  
-        image:  MYAPP:latest
+      - name:  beer
+        image:  beer
         resources:
           requests:
             cpu: 100m
