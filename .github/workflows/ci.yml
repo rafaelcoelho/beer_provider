@@ -9,9 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-java@v2
+      - name: Environment Setup
+        uses: actions/setup-java@v2
         with:
           distribution: 'microsoft'
           java-version: '17'
@@ -34,4 +36,46 @@ jobs:
       - name: Run Contract Test
         run: ./gradlew contractTest
 
+  pack_docker_image:
+    runs-on: ubuntu-latest
+    needs: build
 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build container image
+        user: docker/build-push-action@v1.1.0
+        with:
+          username: ${{ secrets.DOCKER_USER_NAME }}
+          password: ${{ secrets.DOCKER_PASSWD }}
+          repository: rscoelho/beer_provider
+          tags: ${{ github.sha }}, latest
+       
+  deploy:
+    runs-on: ubuntu-latest
+    needs: pack_docker_image
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: kustomize
+        uses: imranismail/setup-kustomize@v1
+        with:
+          kustomize_version: v3.6.1
+
+      - name: Update k8s manifests
+        run: |
+          cd k8s
+          kustomize edit set image beer_provider=rscoelho/beer_provider:${{ github.sha }}
+          cat kustomization.yml
+
+      - name: Commit
+        run: |
+          git config --local user.name "action@github.com"
+          git config --local user.name "Beer Owner"
+          git commit -am "Upgrade image tag"
+
+      - name: Push
+        uses: ad-m/github-push-action@cd
