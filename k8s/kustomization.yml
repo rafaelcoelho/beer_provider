@@ -8,5 +8,5 @@ namespace: beer-domain
 
 images:
 - name: beer-provider
-  newName: rscoelho/beer_provider_test
-  newTag: 
+  newName: rscoelho/beer_provider
+  newTag: 9e387c077e8f8d777bc7230561377d3c22ff7929
