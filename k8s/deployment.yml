@@ -13,9 +13,6 @@ spec:
   
   replicas: 1
   strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
     type: RollingUpdate
   template:
     metadata:
@@ -33,10 +30,10 @@ spec:
         resources:
           requests:
             cpu: 100m
-            memory: 100Mi
+            memory: 512Mi
           limits:
-            cpu: 100m
-            memory: 100Mi
+            cpu: 700m
+            memory: 1Gi
         livenessProbe:
           httpGet:
             path: /actuator/health/liveness
@@ -58,4 +55,3 @@ spec:
         ports:
         - containerPort:  8081
           name:  beer-provider
-      restartPolicy: Always
