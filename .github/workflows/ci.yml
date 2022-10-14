@@ -81,4 +81,5 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GIT_TOKEN }}
+          force_with_lease: true
           branch: cd
