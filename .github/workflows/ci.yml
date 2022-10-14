@@ -79,6 +79,6 @@ jobs:
 
       - name: Push
         uses: mikeal/publish-to-github-action@master
-        env:
+        with:
           github_token: ${{ secrets.GIT_TOKEN }}
           branch: cd
