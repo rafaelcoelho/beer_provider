@@ -77,8 +77,8 @@ jobs:
           git config --local user.name "Beer Owner"
           git commit -am "Upgrade image tag"
 
-      - name: push
+      - name: Push
         uses: mikeal/publish-to-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-          BRANCH_NAME: cd
+          github_token: ${{ secrets.GIT_TOKEN }}
+          branch: cd
