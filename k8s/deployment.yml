@@ -29,7 +29,7 @@ spec:
           # - Each init container must complete successfully before the next one starts.
       containers:
       - name:  beer
-        image:  beer
+        image:  beer-provider
         resources:
           requests:
             cpu: 100m
@@ -54,12 +54,6 @@ spec:
           successThreshold: 1
           failureThreshold: 3
           periodSeconds: 10
-        env:
-        - name: DB_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: beer-provider
-              key: DB_HOST
         ports:
         - containerPort:  8081
           name:  beer-provider

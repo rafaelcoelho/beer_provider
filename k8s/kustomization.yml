@@ -7,8 +7,6 @@ resources:
 namespace: beer-domain
 
 images:
-- name: beer
-  newName: beer-provider
 - name: beer-provider
-  newName: rscoelho/beer-provider
-  newTag: ""
+  newName: rscoelho/beer_provider_test
+  newTag: 

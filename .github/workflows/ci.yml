@@ -68,7 +68,7 @@ jobs:
       - name: Update k8s manifests
         run: |
           cd k8s
-          kustomize edit set image beer_provider=rscoelho/beer_provider:${{ github.sha }}
+          kustomize edit set image beer-provider=rscoelho/beer_provider:${{ github.sha }}
           cat kustomization.yml
 
       - name: Commit
