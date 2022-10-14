@@ -4,11 +4,11 @@ resources:
 - deployment.yml
 - service.yml
 
-namespace: beer_domain
+namespace: beer-domain
 
 images:
 - name: beer
-  newName: beer_provider
-- name: beer_provider
-  newName: rscoelho/beer_provider
-  newTag: "12321"
+  newName: beer-provider
+- name: beer-provider
+  newName: rscoelho/beer-provider
+  newTag: ""

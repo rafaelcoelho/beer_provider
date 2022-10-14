@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  beer_provider
+  name:  beer-provider
   namespace: default
   labels:
-    app:  beer_provider
+    app:  beer-provider
 
 spec:
   selector:
     matchLabels:
-      app: beer_provider
+      app: beer-provider
   
   replicas: 1
   strategy:
@@ -20,7 +20,7 @@ spec:
   template:
     metadata:
       labels:
-        app:  beer_provider
+        app:  beer-provider
     
     spec:
       # initContainers:
@@ -39,7 +39,7 @@ spec:
             memory: 100Mi
         livenessProbe:
           tcpSocket:
-            port: 80
+            port: 8081
           initialDelaySeconds: 5
           timeoutSeconds: 5
           successThreshold: 1
@@ -47,8 +47,8 @@ spec:
           periodSeconds: 10
         readinessProbe:
           httpGet:
-            path: /_status/healthz
-            port: 80
+            path: /actuator/health
+            port: 8081
           initialDelaySeconds: 5
           timeoutSeconds: 2
           successThreshold: 1
@@ -58,18 +58,9 @@ spec:
         - name: DB_HOST
           valueFrom:
             configMapKeyRef:
-              name: beer_provider
-          
+              name: beer-provider
               key: DB_HOST
         ports:
-        - containerPort:  80
-          name:  beer_provider
-      
-        volumeMounts:
-        - name: localtime
-          mountPath: /etc/localtime
-      volumes:
-        - name: localtime
-          hostPath:
-            path: /usr/share/zoneinfo/Asia/Shanghai
+        - containerPort:  8081
+          name:  beer-provider
       restartPolicy: Always
