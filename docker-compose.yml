@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  beer-server:
+    image: rscoelho/beer_provider:latest
+    ports:
+      - 8081:8081
+
+  prometheus:
+    image: prom/prometheus:latest
+    command: ["--config.file=/prometheus-config/prometheus.yml"]
+    volumes:
+      - ./prometheus-config:/prometheus-config
+    ports:
+      - 9090:9090
+    depends_on:
+      - beer-server
+
+  grafana:
+    image: grafana/grafana
+    volumes:
+      - ./data/grafana:/var/lib/grafana
+    ports:
+      - 3000:3000
+    depends_on:
+      - prometheus
+
+networks:
+  default:
+    name: app-network
