@@ -1,0 +1,11 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: beer-provider
+spec:
+  selector:
+    matchLabels:
+      app: beer-provider
+  endpoints:
+  - port: http-traffic
+    path: "/actuator/prometheus"
