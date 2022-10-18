@@ -10,4 +10,4 @@ namespace: beer-domain
 images:
 - name: beer-provider
   newName: rscoelho/beer_provider
-  newTag: a96582630f2036c5e6daac237cec868d5b2f14b2
+  newTag: 1a0418af4dc89ecae0d1e3b5d406d1d7aba1941b
